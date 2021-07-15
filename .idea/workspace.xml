@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9c19558d-bf39-4038-acf5-12323c91e448" name="Default Changelist" comment="" />
+    <list default="true" id="9c19558d-bf39-4038-acf5-12323c91e448" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy-dev.yml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -75,8 +77,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.github/workflows/deploy-dev.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+            <state relative-caret-position="503">
+              <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -102,10 +104,10 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$PROJECT_DIR$/src/App.vue" />
-        <option value="$PROJECT_DIR$/.github/workflows/deploy-dev.yml" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/.github/workflows/deploy-dev.yml" />
       </list>
     </option>
   </component>
@@ -224,12 +226,12 @@
       <option name="presentableId" value="Default" />
       <updated>1626332371497</updated>
       <workItem from="1626332372964" duration="248000" />
-      <workItem from="1626332755949" duration="2095000" />
+      <workItem from="1626332755949" duration="3255000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2351000" />
+    <option name="totallyTimeSpent" value="3511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-30" width="2560" height="1415" extended-state="0" />
@@ -334,8 +336,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.github/workflows/deploy-dev.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+        <state relative-caret-position="503">
+          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
         </state>
       </provider>
     </entry>
