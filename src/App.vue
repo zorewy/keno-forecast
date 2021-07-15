@@ -1,6 +1,6 @@
 <template>
   <div id='app'>
-    <div class='content-wrapper' ref='contentRef' @click='handleOpenDia'>
+    <div class='content-wrapper' ref='contentRef' @click.prevent='handleOpenDia'>
       <div class='bg-box bg-blur'>
         <!--      <img src='./assets/bg.jpeg'>-->
       </div>
@@ -23,7 +23,7 @@
             </h3>
           </div>
           <div>
-            <button @click='newNum'>点击生成</button>
+            <button @click.prevent='newNum'>点击生成</button>
             <input type='date' v-model='date' >
           </div>
         </div>
@@ -96,7 +96,8 @@ export default {
       date: new Date().toLocaleDateString().replace(/\//g, '-'),
       allNum: [],
       dialogVisible: false,
-      randomMa: ''
+      randomMa: '',
+      flag: false
     }
   },
   created() {
@@ -111,6 +112,9 @@ export default {
   },
   methods: {
     newNum() {
+      if(!this.flag) {
+        return
+      }
       if (this.getFrontArea.length <= 5) {
         let position = Math.floor((Math.random()* this.frontArea.length))
         let num = this.frontArea[position]
@@ -140,10 +144,10 @@ export default {
       this.allNum.splice(index, 1)
     },
     handleClose() {
-
+      this.dialogVisible = false
     },
     handleOpenDia() {
-      this.dialogVisible = true
+      this.dialogVisible = !this.flag;
     },
     getMa() {
       window.location.href = 'https://www.xiaocifang.com/i/GOc7c9b8d86DV.html'
@@ -151,6 +155,7 @@ export default {
     handleMa() {
       if(this.randomMa === '392042') {
         this.dialogVisible = false
+        this.flag = true
         this.$message({
           message: '验证码正确，预祝您中的头彩',
           type: 'success'
