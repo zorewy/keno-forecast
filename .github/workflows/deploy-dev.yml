@@ -3,7 +3,7 @@ name: deploy for dev
 on:
   push:
     branches:
-      - 'master' # 只针对 dev 分支
+      - 'master' # 只针对 dev 分支1
     paths:
       - '.github/workflows/*'
       - '**'
