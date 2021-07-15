@@ -1,4 +1,4 @@
-version: '1.0.0'
+version: '3'
 services:
     keno-forecast:
         build:
@@ -8,3 +8,4 @@ services:
         container_name: keno-forecast
         ports:
             - 8080:8080 # 宿主机通过 8081 访问
+
