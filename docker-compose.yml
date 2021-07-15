@@ -7,5 +7,5 @@ services:
         image: keno-forecast # 依赖于当前 Dockerfile 创建镜像
         container_name: keno-forecast
         ports:
-            - 8080:8080 # 宿主机通过 8081 访问
+            - 80:80 # 宿主机通过 8081 访问
 
