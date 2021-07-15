@@ -1,5 +1,24 @@
-# keno-forecast
-大乐透预测神器，追虎擒龙， 风水大师，得水为上，藏风次之。左青龙右白虎，前朱雀后玄武，有风水助阵，神仙保佑🙏，选号定能中！
+# bbb
 
+## Project setup
+```
+yarn install
+```
 
-[在线地址](http://www.webrabbit.top)
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
