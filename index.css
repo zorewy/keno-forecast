@@ -1,0 +1,52 @@
+#app {
+    position: relative;
+}
+.top {
+    display: block;
+    text-align: center;
+}
+.title {
+    text-align: center;
+    font-size: 20px;
+}
+
+.taCenter {
+    text-align: center;
+}
+.front-area {
+    display: inline-block;
+    margin-right: 10px;
+    color: brown;
+}
+
+.taLeft {
+    margin-left: 200px;
+    margin-top: 30px;
+}
+
+.get-item {
+    margin-bottom: 20px;
+    color: red;
+}
+
+.get-area {
+    margin-right: 10px;
+}
+
+.zhuque, .xuanwu {
+    width: 200px;
+}
+
+.baihu  {
+    position: absolute;
+    left: 0;
+    top: 300px;
+    width: 120px;
+}
+
+.qinglong {
+    position: absolute;
+    right: 0;
+    top: 340px;
+    width: 120px;
+}
