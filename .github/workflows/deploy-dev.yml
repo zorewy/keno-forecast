@@ -1,0 +1,41 @@
+name: deploy for dev
+
+on:
+  push:
+    branches:
+      - 'master' # 只针对 dev 分支
+    paths:
+      - '.github/workflows/*'
+      - '**'
+      - 'Dockerfile'
+      - 'docker-compose.yml'
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: set ssh key # 临时设置 ssh key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{secrets.WFP_ID_RSA}}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan "139.224.239.179" >> ~/.ssh/known_hosts
+      - name: deploy # 部署
+        run: |
+          ssh work@139.224.239.179 "
+            cd /home/work/keno_forecast;
+            sudo git remote add origin https://websmallrabbit:${{secrets.ACCESS_TOKEN}}@github.com/websmallrabbit/keno-forecast.git;
+            sudo git checkout master;
+            sudo git pull origin master; # 重新下载最新代码
+            sudo git remote remove origin; # 删除 origin ，否则会暴露 github 密码
+            # 先关闭docker
+            sudo docker-compose down;
+            sudo docker rmi editor-server;
+            # 启动 docker
+            sudo docker-compose build editor-server; # 和 docker-compose.yml service 名字一致
+            sudo docker-compose up -d;
+          "
+      - name: delete ssh key # 删除 ssh key
+        run: rm -rf ~/.ssh/id_rsa
