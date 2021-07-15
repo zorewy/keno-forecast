@@ -29,6 +29,8 @@ jobs:
             sudo git remote add origin https://websmallrabbit:${{secrets.ACCESS_TOKEN}}@github.com/websmallrabbit/keno-forecast.git;
             sudo git checkout master;
             sudo git pull origin master; # 重新下载最新代码
+            sudo npm install
+            sudo npm run build
             sudo git remote remove origin; # 删除 origin ，否则会暴露 github 密码
             # 先关闭docker
             sudo docker-compose down;
