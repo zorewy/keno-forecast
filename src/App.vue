@@ -143,6 +143,12 @@ export default {
 .zhuque, .xuanwu {
   width: 200px;
 }
+.zhuque {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  margin-left: -100px;
+}
 
 .baihu  {
   position: absolute;
