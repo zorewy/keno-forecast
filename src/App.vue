@@ -2,7 +2,7 @@
   <div id='app'>
     <div class='content-wrapper' ref='contentRef' @click='handleOpenDia'>
       <div class='bg-box bg-blur'>
-        <!--      <img src='./assets/bg.jpeg'>-->
+<!--        <img src='./assets/bg.jpeg'>-->
       </div>
       <div class='container'>
         <h1 class='top'>神仙保佑🙏，追虎擒龙， 风水大师，得水为上，藏风次之。左青龙右白虎，前朱雀后玄武, 彩票开光，必中大奖🎉🎉🎉</h1>
@@ -27,6 +27,10 @@
             <input class='date-box' type='date' v-model='date' >
             <el-button type='danger' @click='copyNum'>复制号码</el-button>
           </div>
+        <img class='bagua' src='./assets/bagua.jpeg' @click.stop='show = true'>
+          <van-image-preview v-model="show" :images="images">
+<!--            <template v-slot:index>第{{ index }}页</template>-->
+          </van-image-preview>
         </div>
         <div class='taLeft'>
           <div class='get-item'>
@@ -116,7 +120,10 @@
       flag: false,
       getLongList: [],
       allNumString: [],
-      content: []
+      content: [],
+      show: false,
+      index: 0,
+      images: [require('./assets/bagua.jpeg')],
     }
   },
   created() {
@@ -194,6 +201,7 @@
     },
     handleOpenDia() {
       this.dialogVisible = !this.flag;
+      this.show = false
     },
     getMa() {
       window.location.href = 'https://www.xiaocifang.com/i/GOc7c9b8d86DV.html'
@@ -237,7 +245,7 @@
        document.execCommand("Copy");
        this.$message.success('复制成功, 财神爷保佑🙏🙏🙏，此号码必中大奖')
      }, 100)
-    }
+    },
   }
 
 }
@@ -338,7 +346,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    filter: blur(6px);
+    filter: blur(40px);
   }
   .bg-box {
     position: absolute;
@@ -386,5 +394,11 @@
   }
   .result-item {
     margin-bottom: 10px;
+  }
+  .bagua {
+    display: block;
+    width: 120px;
+    text-align: center;
+    margin: 0 auto;
   }
 </style>
