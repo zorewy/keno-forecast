@@ -23,8 +23,9 @@
             </h3>
           </div>
           <div>
-            <button @click='newNum'>点击生成</button>
-            <input type='date' v-model='date' >
+            <el-button type='danger' @click='newNum'>点击生成</el-button>
+            <input class='date-box' type='date' v-model='date' >
+            <el-button type='danger' @click='copyNum'>复制号码</el-button>
           </div>
         </div>
         <div class='taLeft'>
@@ -51,8 +52,9 @@
             前区：<span class='get-area' v-for='(item) in items.front' :key='`front + ${item}`'>{{item}}</span>
             后区：<span class='get-area' v-for='(item) in items.end' :key='`end + ${item}`'>{{item}}</span>
             中奖日期：<span>{{date}}</span>
-            <button @click='handleDet(index)'>删除</button>
+            <button class='delete-box' @click='handleDet(index)'>删除</button>
           </div>
+          <textarea cols="100" rows="1" ref="allNumRef" v-model='allNumString' style='opacity: 0'>这里面的文本内容被复制 </textarea>
         </div>
         <div class='taCenter'>
           <img class='zhuque' src='./assets/zhuque.jpeg'>
@@ -111,20 +113,22 @@ export default {
       dialogVisible: false,
       randomMa: '',
       flag: false,
-      getLongList: []
+      getLongList: [],
+      allNumString: [],
+      content: '风水大乐透_大乐透选号结果\n'
     }
   },
   created() {
     this.randomMa = jsCookies.get('randomMa')
     this.flag = !!this.randomMa
-    window.oncontextmenu=function(){return false;}
-    // 禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
-    window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
-      if(event.code === 'F12'){
-        window.event.returnValue = false;
-        return false;
-      }
-    }
+    // window.oncontextmenu=function(){return false;}
+    // // 禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
+    // window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
+    //   if(event.code === 'F12'){
+    //     window.event.returnValue = false;
+    //     return false;
+    //   }
+    // }
     this.date = parseTime(new Date().getTime(), '{y}-{m}-{d}')
 
     this.getLongList = [{
@@ -163,6 +167,7 @@ export default {
           front: this.getFrontArea,
           end:  this.getEndArea
         })
+        this.content += '\n' + this.getFrontArea.join() + '|' + this.getEndArea.join()
         let frontAreaCopy = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35']
         let endAreaCopy = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         this.frontArea = frontAreaCopy
@@ -185,7 +190,6 @@ export default {
     },
     handleMa() {
       if(this.randomMa === '392042') {
-        // localStorage.setItem('randomMa', '392042')
         jsCookies.set('randomMa','392042', { expires: 3 })
         this.dialogVisible = false
         this.flag = true
@@ -199,6 +203,18 @@ export default {
           type: 'warning'
         });
       }
+    },
+    copyNum() {
+      this.content = this.content + '\n\n以上数据来自风水大乐透; http://www.webrabbit.top' + '   ' + new Date().toLocaleString()
+      // this.allNumString = this.content
+      console.log(this.content)
+      this.allNumString = this.content
+
+     setTimeout(() => {
+       this.$refs.allNumRef.select()
+       document.execCommand("Copy");
+       this.$message.success('复制成功')
+     }, 100)
     }
   }
 
@@ -327,5 +343,11 @@ export default {
   .notice-swipe {
     height: 40px;
     line-height: 40px;
+  }
+  .date-box {
+    margin: 0 20px;
+  }
+  .delete-box {
+    margin-left: 10px;
   }
 </style>

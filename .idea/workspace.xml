@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/App.vue" line="219" mnemonic="5" />
+    <bookmark url="file://$PROJECT_DIR$/src/App.vue" line="235" mnemonic="5" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c19558d-bf39-4038-acf5-12323c91e448" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -66,9 +62,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="126" column="5" lean-forward="true" selection-start-line="119" selection-start-column="3" selection-end-line="126" selection-end-column="5" />
+            <state relative-caret-position="414">
+              <caret line="207" column="116" selection-start-line="207" selection-start-column="116" selection-end-line="207" selection-end-column="116" />
               <folding>
+                <element signature="n#style#0;n#textarea#0;n#div#4;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="e#3291#3325#0" expanded="true" />
               </folding>
             </state>
@@ -142,6 +139,10 @@
       <find>cFormat</find>
       <find>notice-swipe-box</find>
       <find>console</find>
+      <find>copyNum</find>
+      <find>allNum</find>
+      <find>allNumRef</find>
+      <find>allNumString</find>
     </findStrings>
     <replaceStrings>
       <replace>./assets/</replace>
@@ -202,12 +203,6 @@
               <item name="keno-forecast" type="b2602c69:ProjectViewProjectNode" />
               <item name="keno-forecast" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="keno-forecast" type="b2602c69:ProjectViewProjectNode" />
-              <item name="keno-forecast" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -287,12 +282,12 @@
       <updated>1626332371497</updated>
       <workItem from="1626332372964" duration="248000" />
       <workItem from="1626332755949" duration="12128000" />
-      <workItem from="1626399204640" duration="6530000" />
+      <workItem from="1626399204640" duration="9854000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19579000" />
+    <option name="totallyTimeSpent" value="22903000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-30" width="2560" height="1415" extended-state="0" />
@@ -435,9 +430,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="126" column="5" lean-forward="true" selection-start-line="119" selection-start-column="3" selection-end-line="126" selection-end-column="5" />
+        <state relative-caret-position="414">
+          <caret line="207" column="116" selection-start-line="207" selection-start-column="116" selection-end-line="207" selection-end-column="116" />
           <folding>
+            <element signature="n#style#0;n#textarea#0;n#div#4;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#3291#3325#0" expanded="true" />
           </folding>
         </state>
