@@ -42,10 +42,6 @@
             <span class='get-area' v-for='(item, index) in getEndArea' :key='index'>{{item}}</span>
           </div>
         </div>
-
-        <div class='content-box'>
-        </div>
-
         <div class='taLeft'>
           <div v-for='(items, index) in allNum' :key='index'>
             <span>(第{{index+1}}个号码)</span>
@@ -94,6 +90,10 @@
         <van-swipe-item v-for='(item, index) in getLongList' :key='index'>🎉🎉🎉恭喜{{item.name}}喜中{{item.value}}🎉🎉🎉</van-swipe-item>
       </van-swipe>
     </van-notice-bar>
+    <div>
+      <img class='caishenye' src='./assets/caishenye.gif'>
+      <img class='zhaocaimao' src='./assets/zhaocaimao.gif'>
+    </div>
   </div>
 </template>
 
@@ -123,11 +123,11 @@ export default {
     this.flag = !!this.randomMa
     // window.oncontextmenu=function(){return false;}
     // // 禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
-    // window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
-    //   if(event.code === 'F12'){
-    //     window.event.returnValue = false;
-    //     return false;
-    //   }
+    //   window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
+    //     if(event.code === 'F12'){
+    //       window.event.returnValue = false;
+    //       return false;
+    //     }
     // }
     this.date = parseTime(new Date().getTime(), '{y}-{m}-{d}')
 
@@ -213,7 +213,7 @@ export default {
      setTimeout(() => {
        this.$refs.allNumRef.select()
        document.execCommand("Copy");
-       this.$message.success('复制成功')
+       this.$message.success('复制成功, 财神爷保佑🙏🙏🙏，此号码必中大奖')
      }, 100)
     }
   }
@@ -343,6 +343,18 @@ export default {
   .notice-swipe {
     height: 40px;
     line-height: 40px;
+  }
+  .caishenye {
+    position: absolute;
+    top: 40px;
+    right: 320px;
+    width: 120px;
+  }
+  .zhaocaimao {
+    position: absolute;
+    top: 50px;
+    right: 140px;
+    width: 100px;
   }
   .date-box {
     margin: 0 20px;
