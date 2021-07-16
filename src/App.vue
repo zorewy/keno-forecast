@@ -121,14 +121,14 @@ export default {
   created() {
     this.randomMa = jsCookies.get('randomMa')
     this.flag = !!this.randomMa
-    // window.oncontextmenu=function(){return false;}
-    // // 禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
-    //   window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
-    //     if(event.code === 'F12'){
-    //       window.event.returnValue = false;
-    //       return false;
-    //     }
-    // }
+    window.oncontextmenu=function(){return false;}
+    // 禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
+      window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
+        if(event.code === 'F12'){
+          window.event.returnValue = false;
+          return false;
+        }
+    }
     this.date = parseTime(new Date().getTime(), '{y}-{m}-{d}')
 
     this.getLongList = [{

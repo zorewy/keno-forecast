@@ -52,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="895">
-              <caret line="365" column="23" selection-start-line="365" selection-start-column="23" selection-end-line="365" selection-end-column="23" />
+            <state relative-caret-position="430">
+              <caret line="130" column="5" lean-forward="true" selection-start-line="123" selection-start-column="4" selection-end-line="130" selection-end-column="5" />
               <folding>
                 <element signature="n#style#0;n#textarea#0;n#div#4;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="e#3291#3325#0" expanded="true" />
@@ -246,7 +246,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.build">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -286,18 +286,18 @@
       <updated>1626332371497</updated>
       <workItem from="1626332372964" duration="248000" />
       <workItem from="1626332755949" duration="12128000" />
-      <workItem from="1626399204640" duration="12839000" />
+      <workItem from="1626399204640" duration="13045000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25888000" />
+    <option name="totallyTimeSpent" value="26094000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-30" width="2560" height="1415" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25575852" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24344718" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Project Explorer" order="3" />
@@ -306,7 +306,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32953683" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30523917" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -317,7 +317,7 @@
       <window_info anchor="bottom" id="DB Execution Console" order="10" />
       <window_info anchor="bottom" id="GenProtobuf" order="11" />
       <window_info anchor="bottom" id="Log Analyzer" order="12" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="13" visible="true" weight="0.1632498" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="13" visible="true" weight="0.2103265" />
       <window_info anchor="bottom" id="Event Log" order="14" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="15" />
       <window_info anchor="bottom" id="SOQL Query" order="16" />
@@ -437,8 +437,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="895">
-          <caret line="365" column="23" selection-start-line="365" selection-start-column="23" selection-end-line="365" selection-end-column="23" />
+        <state relative-caret-position="430">
+          <caret line="130" column="5" lean-forward="true" selection-start-line="123" selection-start-column="4" selection-end-line="130" selection-end-column="5" />
           <folding>
             <element signature="n#style#0;n#textarea#0;n#div#4;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#3291#3325#0" expanded="true" />
