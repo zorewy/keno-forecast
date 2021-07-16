@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class='taLeft'>
-          <div v-for='(items, index) in allNum' :key='index'>
+          <div v-for='(items, index) in allNum' :key='index' class='result-item'>
             <span>(第{{index+1}}个号码)</span>
             前区：<span class='get-area' v-for='(item) in items.front' :key='`front + ${item}`'>{{item}}</span>
             后区：<span class='get-area' v-for='(item) in items.end' :key='`end + ${item}`'>{{item}}</span>
@@ -361,5 +361,8 @@ export default {
   }
   .delete-box {
     margin-left: 10px !important;
+  }
+  .result-item {
+    margin-bottom: 10px;
   }
 </style>
