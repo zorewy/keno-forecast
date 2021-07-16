@@ -48,7 +48,7 @@
             前区：<span class='get-area' v-for='(item) in items.front' :key='`front + ${item}`'>{{item}}</span>
             后区：<span class='get-area' v-for='(item) in items.end' :key='`end + ${item}`'>{{item}}</span>
             中奖日期：<span>{{date}}</span>
-            <el-button class='delete-box' size='mini' type='danger' @click='handleDet(index)'>删除</el-button>
+<!--            <el-button class='delete-box' size='mini' type='danger' @click='handleDet(index, items)'>删除</el-button>-->
           </div>
           <textarea cols="100" rows="1" ref="allNumRef" v-model='allNumString' style='opacity: 0'>这里面的文本内容被复制 </textarea>
         </div>
@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import {parseTime} from "./utils";
+import { parseTime} from "./utils";
 import jsCookies from 'js-cookie'
 export default {
   name: 'App',
@@ -115,20 +115,24 @@ export default {
       flag: false,
       getLongList: [],
       allNumString: [],
-      content: '风水大乐透_大乐透选号结果\n'
+      content: []
     }
   },
   created() {
     this.randomMa = jsCookies.get('randomMa')
     this.flag = !!this.randomMa
-    window.oncontextmenu=function(){return false;}
-    // 禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
-      window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
-        if(event.code === 'F12'){
-          window.event.returnValue = false;
-          return false;
-        }
+    if(process.env.NODE_ENV !== 'development') {
+      window.oncontextmenu=function(){return false;}
+      // 禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
+        window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
+          if(event.code === 'F12'){
+            window.event.returnValue = false;
+            return false;
+          }
+      }
     }
+    console.log(process.env.NODE_ENV, 'process.env.NODE_ENV')
+
     this.date = parseTime(new Date().getTime(), '{y}-{m}-{d}')
 
     this.getLongList = [{
@@ -167,7 +171,7 @@ export default {
           front: this.getFrontArea,
           end:  this.getEndArea
         })
-        this.content += '\n' + this.getFrontArea.join() + '|' + this.getEndArea.join()
+        this.content.push(this.getFrontArea.join() + '|' + this.getEndArea.join())
         let frontAreaCopy = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35']
         let endAreaCopy = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
         this.frontArea = frontAreaCopy
@@ -176,8 +180,21 @@ export default {
         this.getEndArea = []
       }
     },
-    handleDet(index) {
+    handleDet(index, items) {
       this.allNum.splice(index, 1)
+      let deleteItem = items.front.join() + '|' + items.end.join()
+      console.log(this.content, 'this.content123')
+      this.content = this.content.filter(val => val !== deleteItem)
+
+      this.content = this.content.map(val => {
+        console.log(val.indexOf("\n"), 'val.indexOf("\\n")')
+        if(val !== deleteItem) {
+          val = '\n' + val
+          return val
+        }
+      })
+
+      console.log(this.content, ' this.content')
     },
     handleClose() {
       this.dialogVisible = false
@@ -205,10 +222,9 @@ export default {
       }
     },
     copyNum() {
-      this.content = this.content + '\n\n以上数据来自风水大乐透; http://www.webrabbit.top' + '   ' + new Date().toLocaleString()
-      // this.allNumString = this.content
-      console.log(this.content)
-      this.allNumString = this.content
+      // let contentCopy = deepClone(this.content)
+      let contentCopy = '风水大乐透_大乐透选号结果\n' + this.content + '\n\n以上数据来自风水大乐透; http://www.webrabbit.top' + '   ' + new Date().toLocaleString()
+      this.allNumString = contentCopy
 
      setTimeout(() => {
        this.$refs.allNumRef.select()
