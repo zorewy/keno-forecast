@@ -70,7 +70,7 @@
             :before-close="handleClose">
       <span>
        <div class="demo-input-suffix">
-        请填写随机码：
+        请填写随机码：(一个随机码可用3天)
         <el-input
                 placeholder="请填写随机码"
                 v-model="randomMa">
@@ -97,7 +97,7 @@
 
 <script>
 import {parseTime} from "./utils";
-
+import jsCookies from 'js-cookie'
 export default {
   name: 'App',
   data() {
@@ -115,16 +115,16 @@ export default {
     }
   },
   created() {
-    this.randomMa = localStorage.getItem('randomMa')
+    this.randomMa = jsCookies.get('randomMa')
     this.flag = !!this.randomMa
-    // window.oncontextmenu=function(){return false;}
-    // // 禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
-    // window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
-    //   if(event.code === 'F12'){
-    //     window.event.returnValue = false;
-    //     return false;
-    //   }
-    // }
+    window.oncontextmenu=function(){return false;}
+    // 禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
+    window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
+      if(event.code === 'F12'){
+        window.event.returnValue = false;
+        return false;
+      }
+    }
     this.date = parseTime(new Date().getTime(), '{y}-{m}-{d}')
 
     this.getLongList = [{
@@ -185,7 +185,8 @@ export default {
     },
     handleMa() {
       if(this.randomMa === '392042') {
-        localStorage.setItem('randomMa', '392042')
+        // localStorage.setItem('randomMa', '392042')
+        jsCookies.set('randomMa','392042', { expires: 3 })
         this.dialogVisible = false
         this.flag = true
         this.$message({
@@ -318,7 +319,7 @@ export default {
   }
 
   .notice-swipe-box {
-    position: fixed;
+    position: absolute;
     top: 100px;
     left: 90px;
     width: 260px;
