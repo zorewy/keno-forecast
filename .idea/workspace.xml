@@ -1,29 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/App.vue" line="251" mnemonic="5" />
+    <bookmark url="file://$PROJECT_DIR$/src/App.vue" line="256" mnemonic="5" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c19558d-bf39-4038-acf5-12323c91e448" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/css/app.846f958a.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/css/chunk-vendors.1ef4d275.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/fonts/element-icons.535877f5.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/fonts/element-icons.732389de.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/img/baihu.dca5a3ff.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/img/caishenye.7b16727e.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/img/qinglong.2c5fdfde.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/img/xuanwu.e485c91b.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/img/zhaocaimao.a59e282d.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/img/zhuque.d07fc242.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/app.f00ede6e.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/app.f00ede6e.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/chunk-vendors.c67936c2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/chunk-vendors.c67936c2.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -70,11 +52,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="135" selection-start-line="135" selection-end-line="135" />
+            <state relative-caret-position="328">
+              <caret line="218" column="35" selection-start-line="218" selection-start-column="35" selection-end-line="218" selection-end-column="35" />
               <folding>
                 <element signature="n#style#0;n#textarea#0;n#div#4;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#3691#3736#0" expanded="true" />
+                <element signature="e#3691#3725#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,8 +127,6 @@
       <find>content-wrapper</find>
       <find>cFormat</find>
       <find>notice-swipe-box</find>
-      <find>console</find>
-      <find>copyNum</find>
       <find>allNum</find>
       <find>allNumRef</find>
       <find>allNumString</find>
@@ -155,6 +135,8 @@
       <find>delete-box</find>
       <find>handleDet</find>
       <find>deepClone</find>
+      <find>console</find>
+      <find>copyNum</find>
     </findStrings>
     <replaceStrings>
       <replace>./assets/</replace>
@@ -209,24 +191,7 @@
             <path>
               <item name="keno-forecast" type="b2602c69:ProjectViewProjectNode" />
               <item name="keno-forecast" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="keno-forecast" type="b2602c69:ProjectViewProjectNode" />
-              <item name="keno-forecast" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="keno-forecast" type="b2602c69:ProjectViewProjectNode" />
-              <item name="keno-forecast" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="keno-forecast" type="b2602c69:ProjectViewProjectNode" />
-              <item name="keno-forecast" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -306,18 +271,18 @@
       <updated>1626332371497</updated>
       <workItem from="1626332372964" duration="248000" />
       <workItem from="1626332755949" duration="12128000" />
-      <workItem from="1626399204640" duration="15973000" />
+      <workItem from="1626399204640" duration="16924000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29022000" />
+    <option name="totallyTimeSpent" value="29973000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-30" width="2560" height="1415" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24344718" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2065131" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Project Explorer" order="3" />
@@ -326,7 +291,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2072893" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22627182" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -337,7 +302,7 @@
       <window_info anchor="bottom" id="DB Execution Console" order="10" />
       <window_info anchor="bottom" id="GenProtobuf" order="11" />
       <window_info anchor="bottom" id="Log Analyzer" order="12" />
-      <window_info anchor="bottom" id="Terminal" order="13" weight="0.29688686" />
+      <window_info anchor="bottom" id="Terminal" order="13" weight="0.3128322" />
       <window_info anchor="bottom" id="Event Log" order="14" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="15" />
       <window_info anchor="bottom" id="SOQL Query" order="16" />
@@ -457,11 +422,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="135" selection-start-line="135" selection-end-line="135" />
+        <state relative-caret-position="328">
+          <caret line="218" column="35" selection-start-line="218" selection-start-column="35" selection-end-line="218" selection-end-column="35" />
           <folding>
             <element signature="n#style#0;n#textarea#0;n#div#4;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#3691#3736#0" expanded="true" />
+            <element signature="e#3691#3725#0" expanded="true" />
           </folding>
         </state>
       </provider>

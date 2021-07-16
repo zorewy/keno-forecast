@@ -48,7 +48,7 @@
             前区：<span class='get-area' v-for='(item) in items.front' :key='`front + ${item}`'>{{item}}</span>
             后区：<span class='get-area' v-for='(item) in items.end' :key='`end + ${item}`'>{{item}}</span>
             中奖日期：<span>{{date}}</span>
-<!--            <el-button class='delete-box' size='mini' type='danger' @click='handleDet(index, items)'>删除</el-button>-->
+            <el-button class='delete-box' size='mini' type='danger' @click='handleDet(index, items)'>删除</el-button>
           </div>
           <textarea cols="100" rows="1" ref="allNumRef" v-model='allNumString' style='opacity: 0'>这里面的文本内容被复制 </textarea>
         </div>
@@ -98,9 +98,10 @@
 </template>
 
 <script>
-import { parseTime} from "./utils";
-import jsCookies from 'js-cookie'
-export default {
+  import {parseTime} from "./utils";
+  import jsCookies from 'js-cookie'
+
+  export default {
   name: 'App',
   data() {
     return {
@@ -131,7 +132,6 @@ export default {
           }
       }
     }
-    console.log(process.env.NODE_ENV, 'process.env.NODE_ENV')
 
     this.date = parseTime(new Date().getTime(), '{y}-{m}-{d}')
 
@@ -183,18 +183,11 @@ export default {
     handleDet(index, items) {
       this.allNum.splice(index, 1)
       let deleteItem = items.front.join() + '|' + items.end.join()
-      console.log(this.content, 'this.content123')
-      this.content = this.content.filter(val => val !== deleteItem)
-
-      this.content = this.content.map(val => {
-        console.log(val.indexOf("\n"), 'val.indexOf("\\n")')
-        if(val !== deleteItem) {
-          val = '\n' + val
-          return val
-        }
+      this.content = this.content.map(value => {
+        value = value.replace('\n', '')
+        return value
       })
-
-      console.log(this.content, ' this.content')
+      this.content = this.content.filter(val => val !== deleteItem)
     },
     handleClose() {
       this.dialogVisible = false
@@ -222,9 +215,21 @@ export default {
       }
     },
     copyNum() {
-      // let contentCopy = deepClone(this.content)
-      let contentCopy = '风水大乐透_大乐透选号结果\n' + this.content + '\n\n以上数据来自风水大乐透; http://www.webrabbit.top' + '   ' + new Date().toLocaleString()
-      this.allNumString = contentCopy
+      if(this.allNum.length <= 0) {
+        this.$message.error('清先生成彩票号码')
+        return
+      }
+
+      this.content = this.content.map(val => {
+        if(val.indexOf("\n") !== 0) {
+          val = '\n' + val
+          return val
+        }else {
+          return val
+        }
+      })
+
+      this.allNumString = '风水大乐透_大乐透选号结果\n' + this.content + '\n\n以上数据来自风水大乐透; http://www.webrabbit.top' + '   ' + new Date().toLocaleString()
 
      setTimeout(() => {
        this.$refs.allNumRef.select()
