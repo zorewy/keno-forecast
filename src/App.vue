@@ -229,6 +229,7 @@
         }
       })
 
+      
       this.allNumString = '风水大乐透_大乐透选号结果\n' + this.content + '\n\n以上数据来自风水大乐透; http://www.webrabbit.top' + '   ' + new Date().toLocaleString()
 
      setTimeout(() => {
