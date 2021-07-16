@@ -154,13 +154,13 @@
       if(!this.flag) {
         return
       }
-      if (this.getFrontArea.length <= 5) {
+      if (this.getFrontArea.length <= 4) {
         let position = Math.floor((Math.random()* this.frontArea.length))
         let num = this.frontArea[position]
         this.frontArea.splice(position, 1)
         this.getFrontArea.push(num)
         this.getFrontArea.sort()
-      }else if(this.getFrontArea.length >=5 && this.getEndArea.length >=0 &&  this.getEndArea.length < 2) {
+      }else if(this.getFrontArea.length >=4 && this.getEndArea.length >=0 &&  this.getEndArea.length < 2) {
         let position1 = Math.floor((Math.random()* this.endArea.length))
         let num1 = this.endArea[position1]
         this.endArea.splice(position1, 1)
@@ -229,8 +229,8 @@
         }
       })
 
-      
-      this.allNumString = '风水大乐透_大乐透选号结果\n' + this.content + '\n\n以上数据来自风水大乐透; http://www.webrabbit.top' + '   ' + new Date().toLocaleString()
+
+      this.allNumString = '风水大乐透_大乐透选号结果\n' + '中奖时间：'+ this.date + '\n' + this.content + '\n\n以上数据来自风水大乐透; http://www.webrabbit.top' + '   ' + new Date().toLocaleString()
 
      setTimeout(() => {
        this.$refs.allNumRef.select()
