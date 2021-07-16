@@ -48,7 +48,7 @@
             前区：<span class='get-area' v-for='(item) in items.front' :key='`front + ${item}`'>{{item}}</span>
             后区：<span class='get-area' v-for='(item) in items.end' :key='`end + ${item}`'>{{item}}</span>
             中奖日期：<span>{{date}}</span>
-            <button class='delete-box' @click='handleDet(index)'>删除</button>
+            <el-button class='delete-box' size='mini' type='danger' @click='handleDet(index)'>删除</el-button>
           </div>
           <textarea cols="100" rows="1" ref="allNumRef" v-model='allNumString' style='opacity: 0'>这里面的文本内容被复制 </textarea>
         </div>
@@ -360,6 +360,6 @@ export default {
     margin: 0 20px;
   }
   .delete-box {
-    margin-left: 10px;
+    margin-left: 10px !important;
   }
 </style>
