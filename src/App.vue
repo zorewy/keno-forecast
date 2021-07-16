@@ -1,6 +1,6 @@
 <template>
   <div id='app'>
-    <div class='content-wrapper' ref='contentRef' @click.prevent='handleOpenDia'>
+    <div class='content-wrapper' ref='contentRef' @click='handleOpenDia'>
       <div class='bg-box bg-blur'>
         <!--      <img src='./assets/bg.jpeg'>-->
       </div>
@@ -23,7 +23,7 @@
             </h3>
           </div>
           <div>
-            <button @click.prevent='newNum'>点击生成</button>
+            <button @click='newNum'>点击生成</button>
             <input type='date' v-model='date' >
           </div>
         </div>
@@ -43,18 +43,19 @@
         </div>
 
         <div class='content-box'>
-          <div class='taLeft'>
-            <div v-for='(items, index) in allNum' :key='index'>
-              <span>(第{{index+1}}个号码)</span>
-              前区：<span class='get-area' v-for='(item, index) in items.front' :key='index'>{{item}}</span>
-              后区：<span class='get-area' v-for='(item, index) in items.end' :key='index'>{{item}}</span>
-              中奖日期：<span>{{date}}</span>
-              <button @click='handleDet(index)'>删除</button>
-            </div>
+        </div>
+
+        <div class='taLeft'>
+          <div v-for='(items, index) in allNum' :key='index'>
+            <span>(第{{index+1}}个号码)</span>
+            前区：<span class='get-area' v-for='(item) in items.front' :key='`front + ${item}`'>{{item}}</span>
+            后区：<span class='get-area' v-for='(item) in items.end' :key='`end + ${item}`'>{{item}}</span>
+            中奖日期：<span>{{date}}</span>
+            <button @click='handleDet(index)'>删除</button>
           </div>
-          <div class='taCenter'>
-            <img class='zhuque' src='./assets/zhuque.jpeg'>
-          </div>
+        </div>
+        <div class='taCenter'>
+          <img class='zhuque' src='./assets/zhuque.jpeg'>
         </div>
 
         <img class='baihu' src='./assets/baihu.jpeg'>
@@ -65,7 +66,7 @@
     <el-dialog
             title="提示"
             :visible.sync="dialogVisible"
-            width="30%"
+            width="300px"
             :before-close="handleClose">
       <span>
        <div class="demo-input-suffix">
@@ -81,10 +82,22 @@
         <el-button @click="handleMa">确 定</el-button>
        </span>
     </el-dialog>
+    <van-notice-bar left-icon="volume-o" :scrollable="false" class='notice-swipe-box'>
+      <van-swipe
+              vertical
+              class="notice-swipe"
+              :autoplay="3000"
+              :show-indicators="false"
+      >
+        <van-swipe-item v-for='(item, index) in getLongList' :key='index'>🎉🎉🎉恭喜{{item.name}}喜中{{item.value}}🎉🎉🎉</van-swipe-item>
+      </van-swipe>
+    </van-notice-bar>
   </div>
 </template>
 
 <script>
+import {parseTime} from "./utils";
+
 export default {
   name: 'App',
   data() {
@@ -93,22 +106,40 @@ export default {
       endArea: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
       getFrontArea: [],
       getEndArea: [],
-      date: new Date().toLocaleDateString().replace(/\//g, '-'),
+      date: '',
       allNum: [],
       dialogVisible: false,
       randomMa: '',
-      flag: false
+      flag: false,
+      getLongList: []
     }
   },
   created() {
-    window.oncontextmenu=function(){return false;}
-    // 禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
-    window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
-      if(event.code === 'F12'){
-        window.event.returnValue = false;
-        return false;
-      }
-    }
+    this.randomMa = localStorage.getItem('randomMa')
+    this.flag = !!this.randomMa
+    // window.oncontextmenu=function(){return false;}
+    // // 禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
+    // window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
+    //   if(event.code === 'F12'){
+    //     window.event.returnValue = false;
+    //     return false;
+    //   }
+    // }
+    this.date = parseTime(new Date().getTime(), '{y}-{m}-{d}')
+
+    this.getLongList = [{
+      name: '赵先生',
+      value: '二等奖'
+    }, {
+      name: '刘女士',
+      value: '三等奖'
+    }, {
+      name: '王小姐',
+      value: '三等奖'
+    }, {
+      name: '周女士',
+      value: '三等奖'
+    }]
   },
   methods: {
     newNum() {
@@ -154,6 +185,7 @@ export default {
     },
     handleMa() {
       if(this.randomMa === '392042') {
+        localStorage.setItem('randomMa', '392042')
         this.dialogVisible = false
         this.flag = true
         this.$message({
@@ -184,6 +216,8 @@ export default {
 #app {
   position: relative;
   height: 100vh;
+  width: 100%;
+  min-width: 1200px;
 }
 .top {
   display: block;
@@ -219,13 +253,14 @@ export default {
 }
 
 .zhuque, .xuanwu {
+  margin-top: 20px;
   width: 200px;
 }
 .zhuque {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  margin-left: -100px;
+  /*position: fixed;*/
+  /*bottom: 20px;*/
+  /*left: 50%;*/
+  /*margin-left: -100px;*/
 }
 
 .baihu  {
@@ -282,4 +317,14 @@ export default {
     width: 200px !important;
   }
 
+  .notice-swipe-box {
+    position: fixed;
+    top: 100px;
+    left: 90px;
+    width: 260px;
+  }
+  .notice-swipe {
+    height: 40px;
+    line-height: 40px;
+  }
 </style>
