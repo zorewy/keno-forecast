@@ -200,7 +200,7 @@
       this.dialogVisible = false
     },
     handleOpenDia() {
-      this.dialogVisible = !this.flag;
+      // this.dialogVisible = !this.flag;
       this.show = false
     },
     getMa() {
