@@ -116,7 +116,7 @@
       date: '',
       allNum: [],
       dialogVisible: false,
-      randomMa: '',
+      randomMa: '392042',
       flag: false,
       getLongList: [],
       allNumString: [],
@@ -158,6 +158,7 @@
   },
   methods: {
     newNum() {
+      this.flag = true
       if(!this.flag) {
         return
       }
