@@ -104,6 +104,7 @@
 <script>
   import {parseTime} from "./utils";
   import jsCookies from 'js-cookie'
+  import {randomMa} from "./utils/config";
 
   export default {
   name: 'App',
@@ -116,7 +117,7 @@
       date: '',
       allNum: [],
       dialogVisible: false,
-      randomMa: '392042',
+      randomMa: '',
       flag: false,
       getLongList: [],
       allNumString: [],
@@ -158,7 +159,6 @@
   },
   methods: {
     newNum() {
-      this.flag = true
       if(!this.flag) {
         return
       }
@@ -201,15 +201,15 @@
       this.dialogVisible = false
     },
     handleOpenDia() {
-      // this.dialogVisible = !this.flag;
+      this.dialogVisible = !this.flag;
       this.show = false
     },
     getMa() {
       window.location.href = 'https://www.xiaocifang.com/i/GOc7c9b8d86DV.html'
     },
     handleMa() {
-      if(this.randomMa === '392042') {
-        jsCookies.set('randomMa','392042', { expires: 3 })
+      if(this.randomMa === randomMa) {
+        jsCookies.set('randomMa',randomMa, { expires: 3 })
         this.dialogVisible = false
         this.flag = true
         this.$message({
