@@ -105,7 +105,6 @@
   import {parseTime} from "./utils";
   import jsCookies from 'js-cookie'
   import {randomMa} from "./utils/config";
-
   export default {
   name: 'App',
   data() {
@@ -133,11 +132,14 @@
     if(process.env.NODE_ENV !== 'development') {
       window.oncontextmenu=function(){return false;}
       // 禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具）
-        window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
-          if(event.code === 'F12'){
-            window.event.returnValue = false;
-            return false;
-          }
+      window.onkeydown = window.onkeyup = window.onkeypress = function (e) {
+        var keyCode = e.keyCode || e.which || e.charCode;
+        var ctrlKey = e.ctrlKey || e.metaKey;
+        // console.log(keyCode, ctrlKey)
+        if(event.code === 'F12' || ctrlKey && keyCode===73 || keyCode === 123){
+          window.event.returnValue = false;
+          return false;
+        }
       }
     }
 
@@ -225,7 +227,7 @@
     },
     copyNum() {
       if(this.allNum.length <= 0) {
-        this.$message.error('清先生成彩票号码')
+        this.$message.error('先生成彩票号码再复制')
         return
       }
 
@@ -237,7 +239,6 @@
           return val
         }
       })
-
 
       this.allNumString = '风水大乐透_大乐透选号结果\n' + '中奖时间：'+ this.date + '\n' + this.content + '\n\n以上数据来自风水大乐透; http://www.webrabbit.top' + '   ' + new Date().toLocaleString()
 
