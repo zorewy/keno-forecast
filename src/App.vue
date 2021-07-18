@@ -72,7 +72,7 @@
             :before-close="handleClose">
       <span>
        <div class="demo-input-suffix">
-        请填写随机码
+        请填写随机码(终身可用)
         <el-input
                 placeholder="请填写随机码"
                 v-model="randomMa">
