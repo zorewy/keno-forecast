@@ -5,7 +5,7 @@
 <!--        <img src='./assets/bg.jpeg'>-->
       </div>
       <div class='container'>
-        <h1 class='top'>神仙保佑🙏，追虎擒龙， 风水大师，得水为上，藏风次之。左青龙右白虎，前朱雀后玄武, 彩票开光，必中大奖🎉🎉🎉</h1>
+        <h1 class='top'>神仙保佑🙏🙏🙏，追虎擒龙， 风水大师，得水为上，藏风次之。左青龙右白虎，前朱雀后玄武, 彩票开光，必中大奖🎉🎉🎉</h1>
         <h1 class='title'>风水大乐透预测</h1>
         <div class='taCenter'>
           <img class='xuanwu' src='./assets/xuanwu.jpeg'>
