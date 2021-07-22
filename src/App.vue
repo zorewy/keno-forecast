@@ -23,7 +23,10 @@
             </h3>
           </div>
           <div>
-            <el-button type='danger' @click='newNum'>点击生成</el-button>
+            <el-button type='danger' @click='newNum'>手动生成</el-button>
+            <el-button v-if='loading' type='danger' @click='newNumFunc' disabled>生成中</el-button>
+            <el-button v-else type='danger' @click='newNumFunc'>自动生成</el-button>
+            <el-button type='danger' @click='stopAutoFunc'>停止自定生成</el-button>
             <input class='date-box' type='date' v-model='date' >
             <el-button type='danger' @click='copyNum'>复制号码</el-button>
           </div>
@@ -124,6 +127,8 @@
       show: false,
       index: 0,
       images: [require('./assets/bagua.jpeg')],
+      timer: null,
+      loading: false
     }
   },
   created() {
@@ -160,6 +165,50 @@
     }]
   },
   methods: {
+    newNumFunc() {
+      this.loading = true
+      this.timer = setInterval(() => {
+        this.autoFunc()
+      }, 2000)
+    },
+    stopAutoFunc() {
+      clearInterval(this.timer)
+      this.loading = false
+    },
+    autoFunc() {
+      if(!this.flag) {
+        return
+      }
+      if (this.getFrontArea.length <= 4) {
+        let position = Math.floor((Math.random()* this.frontArea.length))
+        let num = this.frontArea[position]
+        this.frontArea.splice(position, 1)
+        this.getFrontArea.push(num)
+        this.getFrontArea.sort()
+      }else if(this.getFrontArea.length >=4 && this.getEndArea.length >=0 &&  this.getEndArea.length < 2) {
+        let position1 = Math.floor((Math.random()* this.endArea.length))
+        let num1 = this.endArea[position1]
+        this.endArea.splice(position1, 1)
+        this.getEndArea.push(num1)
+        this.getEndArea.sort()
+      }else {
+        this.allNum.push({
+          front: this.getFrontArea,
+          end:  this.getEndArea
+        })
+        this.content.push(this.getFrontArea.join() + '|' + this.getEndArea.join())
+        let frontAreaCopy = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35']
+        let endAreaCopy = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+        this.frontArea = frontAreaCopy
+        this.endArea = endAreaCopy
+        this.getFrontArea = []
+        this.getEndArea = []
+        if(this.allNum.length >= 5) {
+          clearInterval(this.timer)
+          this.loading = false
+        }
+      }
+    },
     newNum() {
       if(!this.flag) {
         return
