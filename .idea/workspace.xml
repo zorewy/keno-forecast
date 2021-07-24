@@ -4,12 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/App.vue" line="210" mnemonic="5" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c19558d-bf39-4038-acf5-12323c91e448" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/getNum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/config.js" afterDir="false" />
-    </list>
+    <list default="true" id="9c19558d-bf39-4038-acf5-12323c91e448" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -24,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="119" column="42" selection-start-line="119" selection-start-column="42" selection-end-line="119" selection-end-column="42" />
+            <state relative-caret-position="281">
+              <caret line="130" column="16" lean-forward="true" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="16" />
               <folding>
                 <element signature="n#style#0;n#el-table#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#1;n#el-table#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -273,7 +268,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.build">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -306,9 +301,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.lint" />
-        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
   </component>
@@ -331,18 +326,18 @@
       <workItem from="1626679528321" duration="1434000" />
       <workItem from="1626931181590" duration="1799000" />
       <workItem from="1627133568591" duration="700000" />
-      <workItem from="1627135669253" duration="10849000" />
+      <workItem from="1627135669253" duration="11561000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54477000" />
+    <option name="totallyTimeSpent" value="55189000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1440" height="875" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17238913" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17238913" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Project Explorer" order="3" />
@@ -351,7 +346,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26640928" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35649934" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -362,7 +357,7 @@
       <window_info anchor="bottom" id="DB Execution Console" order="10" />
       <window_info anchor="bottom" id="GenProtobuf" order="11" />
       <window_info anchor="bottom" id="Log Analyzer" order="12" />
-      <window_info anchor="bottom" id="Terminal" order="13" weight="0.15701416" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="13" visible="true" weight="0.37194338" />
       <window_info anchor="bottom" id="Event Log" order="14" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="15" />
       <window_info anchor="bottom" id="SOQL Query" order="16" />
@@ -494,8 +489,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="119" column="42" selection-start-line="119" selection-start-column="42" selection-end-line="119" selection-end-column="42" />
+        <state relative-caret-position="281">
+          <caret line="130" column="16" lean-forward="true" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="16" />
           <folding>
             <element signature="n#style#0;n#el-table#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#1;n#el-table#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
