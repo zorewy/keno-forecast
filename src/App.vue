@@ -100,7 +100,7 @@
             <textarea cols="100" rows="1" ref="allNumRef" v-model='allNumString'
                       style='opacity: 0'>这里面的文本内容被复制 </textarea>
           </div>
-          <div style='width: 2000px'>
+          <div>
             <div>
               <el-select
                       v-model="front"
@@ -154,29 +154,49 @@
                 <span v-if='one'>1等奖数: {{one}}个</span>
               </el-tag>
             </div>
-            <div v-for='(item, index) in selectedNum' :key='index'>
-              <div v-if='item.level>0'>
-                <span>第{{item.no}}期：</span>
-                <span style='display: inline-block; width: 80px'>
+            <div class='prize-content' v-if='selectedNum.length>0'>
+              <div v-for='(item, index) in selectedNum' :key='index'>
+                <div v-if='item.level>0'>
+                  <span>第{{item.no}}期：</span>
+                  <span style='display: inline-block; width: 80px'>
                 <span v-if='item.level > 0' style='color: red'>中{{item.level}}等奖</span>
                 <span v-else>未中奖</span>
               </span>
-                <span style='margin-right: 20px'>前区：
+                  <span style='margin-right: 20px'>前区：
                 <span v-if='item.array[0].length>0'>
                   <span style='color: red'>{{item.array[0]}}</span>
                 </span>
                 <span v-else>无</span>
               </span>
-                <span>后区：
+                  <span>后区：
                  <span v-if='item.array[1].length>0'>
                   <span style='color: red'>{{item.array[1]}}</span>
                 </span>
                 <span v-else>无</span>
               </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
+<!--        <div class='taCenter'>-->
+<!--          <el-table-->
+<!--                  :data="history"-->
+<!--                  style="width: 90%; text-align: center; margin: 0 auto"-->
+<!--                  highlight-current-row-->
+<!--          >-->
+<!--            <el-table-column label="前区">-->
+<!--              <template v-for='(item, index) in 35'>-->
+<!--                <table-item :key='index' :prop-name="item < 10 ? '0' + item : item.toString()" :label-name="item < 10 ? '0' + item : item.toString()"></table-item>-->
+<!--              </template>-->
+<!--            </el-table-column>-->
+<!--            <el-table-column label="后区">-->
+<!--              <template v-for='(item, index) in 47'>-->
+<!--                <table-item v-if='item > 35' :key='index' :prop-name="item.toString()" :label-name='(item-35).toString()'></table-item>-->
+<!--              </template>-->
+<!--            </el-table-column>-->
+<!--          </el-table>-->
+<!--        </div>-->
         <div class='taCenter'>
           <img class='zhuque' src='./assets/zhuque.jpeg'>
         </div>
@@ -226,10 +246,13 @@
 <script>
   import {parseTime} from "./utils";
   import jsCookies from 'js-cookie'
-  import {AllNum, randomMa, aaa} from "./utils/config";
+  import {AllNum, randomMa, aaa, AllErNum} from "./utils/config";
+  // import TableItem from "./components/table";
 
   export default {
     name: 'App',
+    // components: {TableItem},
+    // components: {TableItem},
     data() {
       return {
         frontArea: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35'],
@@ -265,7 +288,9 @@
         three: 0, // 3等奖中奖数
         two: 0, // 2等奖中奖数
         one: 0, // 1等奖中奖数
-        aaa: aaa
+        history: [{}],
+        aaa: aaa,
+        AllErNum: AllErNum
       }
     },
     created() {
@@ -305,11 +330,19 @@
         value: '三等奖'
       }]
       // this.getStatic()
+
+      // 赋值
+      // for (let i = 1; i <= 47; i++) {
+      //    i = i < 10 ? '0'+i : i.toString()
+      //   this.history[0][i] = 0
+      // }
+
+      // this.calcSing()
     },
     methods: {
       getAAA() {
         this.aaa = this.aaa.map(value => {
-          value = value.slice(0, 8)
+          // value = value.slice(1, 8)
           value = {
             no: value[0],
             array: [value.slice(1, 6), value.slice(6, 8)]
@@ -322,6 +355,7 @@
         this.AllNum.map((val, i) => {
           return this.contrast(i, val.no, val.array, this.selectNum)
         })
+        console.log(JSON.stringify(this.selectedNum), 'this.selectedNum')
         this.calcPrize()
       },
       contrast(i, no, array1, array2) {
@@ -329,7 +363,8 @@
           no: no,
           level: 0,
           prizeTotal: 0,
-          array: [[], []]
+          array: [[], []],
+          array2: [[], []],
         })
         array1[0].map((value) => {
           array2[0].map((val) => {
@@ -341,11 +376,6 @@
         array1[1].map((value) => {
           array2[1].map((val) => {
             if (value === val) {
-              value = {
-                index: i,
-                activeNum: val,
-                pos: 'end'
-              }
               this.selectedNum[i].array[1].push(val)
             }
           })
@@ -398,7 +428,7 @@
             value.level = 0
           }
           return value
-        }).reverse()
+        })
       },
       newNumFunc() {
         this.loading = true
@@ -557,7 +587,30 @@
         this.three = 0 // 3等奖中奖数
         this.two = 0 // 2等奖中奖数
         this.one = 0 // 1等奖中奖数
+      },
 
+      // 历史个数字出现的概率
+      calcSing() {
+        for (let i = 0; i < this.AllErNum.length; i++) {
+          this.singFun(i, this.AllErNum[i])
+        }
+        // return this.singFun(i, val)
+      },
+      singFun(i, val) {
+        val.map((value) => {
+          if(i < 10) {
+            for (let ii = 1; ii <= 35; ii++) {
+              ii = ii < 10 ? '0'+ii : ii.toString()
+              this.copyFun(ii, value)
+            }
+          }
+        })
+      },
+      copyFun(i, value) {
+        // console.log(value, i)
+        if(value === i) {
+          this.history[0][i] += 1
+        }
       }
     }
 
@@ -744,6 +797,10 @@
   }
   .el-input {
     width: 400px !important;
+  }
+  .prize-content {
+    height: 400px;
+    overflow: auto;
   }
   .prize-box span {
     margin-right: 10px;
