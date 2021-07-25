@@ -55,7 +55,7 @@
             <el-table
                     v-if='allNum.length>0'
                     :data="allNum"
-                    style="width: 80%"
+                    style="width: 96%"
                     highlight-current-row
                     @current-change="handleCurrentChange"
             >
@@ -100,7 +100,7 @@
               </el-table-column>
             </el-table>
             <textarea cols="100" rows="1" ref="allNumRef" v-model='allNumString'
-                      style='opacity: 0'>这里面的文本内容被复制 </textarea>
+                      style='opacity: 0;width: 96%'>这里面的文本内容被复制 </textarea>
           </div>
           <div>
             <div>
@@ -138,7 +138,7 @@
               </el-select>
             </div>
             <el-button size='small' @click='handleBi'>对比</el-button>
-            <h3>历史该号中奖情况(07001~21084)共{{selectedNum.length}}期</h3>
+            <h3>历史该号中奖情况(07001~21084)共{{AllNum.length}}期</h3>
             <div class='prize-box' v-if='num'>
               <el-tag type="success">
                 <span v-if='num'>
