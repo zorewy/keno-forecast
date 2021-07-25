@@ -53,7 +53,7 @@
           <div class='taLeft'>
             <el-table
                     :data="allNum"
-                    style="width: 90%"
+                    style="width: 80%"
                     highlight-current-row
                     @current-change="handleCurrentChange"
             >
@@ -97,36 +97,83 @@
                 </template>
               </el-table-column>
             </el-table>
-            <!--            <div v-for='(items, index) in allNum' :key='index' class='result-item'>-->
-            <!--              <span>(第{{index+1}}个号码)</span>-->
-            <!--              前区：<span class='get-area' v-for='(item) in items.front' :key='`front + ${item}`'>{{item}}</span>-->
-            <!--              后区：<span class='get-area' v-for='(item) in items.end' :key='`end + ${item}`'>{{item}}</span>-->
-            <!--              中奖日期：<span>{{date}}</span>-->
-            <!--              <el-button class='delete-box' size='mini' type='danger' @click='handleDet(index, items)'>删除</el-button>-->
-            <!--            </div>-->
             <textarea cols="100" rows="1" ref="allNumRef" v-model='allNumString'
                       style='opacity: 0'>这里面的文本内容被复制 </textarea>
           </div>
-          <div>
-            <h3>所选号码历史中奖情况</h3>
+          <div style='width: 2000px'>
+            <div>
+              <el-select
+                      v-model="front"
+                      multiple
+                      filterable
+                      allow-create
+                      default-first-option
+                      placeholder="请选择前区号码"
+                      style='width: 400px'
+              >
+                <el-option
+                        v-for="item in 35"
+                        :key="item"
+                        :label="item < 10 ? '0' + item : item"
+                        :value="item < 10 ? '0' + item : item">
+                </el-option>
+              </el-select>
+            </div>
+            <div>
+              <el-select
+                      v-model="end"
+                      multiple
+                      filterable
+                      allow-create
+                      default-first-option
+                      placeholder="请选择后区号码">
+                <el-option
+                        v-for="item in 12"
+                        :key="item"
+                        :label="item < 10 ? '0' + item : item"
+                        :value="item < 10 ? '0' + item : item">
+                </el-option>
+              </el-select>
+            </div>
+            <el-button size='small' @click='handleBi'>对比</el-button>
+            <h3>所选号码应用历史中奖情况(07001~21084)共{{selectedNum.length}}期</h3>
+            <div class='prize-box' v-if='num'>
+              <el-tag type="success">
+                <span v-if='num'>
+                  <b style='margin-right: 5px'>所有中奖数: {{num}}个;</b>
+                  <strong>中奖概率 {{(num/selectedNum.length * 100).toFixed(2) }} %</strong>
+                </span>
+                <span v-if='nine'>9等奖数: {{nine}}个</span>
+                <span v-if='eight'>8等奖数: {{eight}}个</span>
+                <span v-if='seven'>7等奖数: {{seven}}个</span>
+                <span v-if='six'>6等奖数: {{six}}个</span>
+                <span v-if='five'>5等奖数: {{five}}个</span>
+                <span v-if='four'>4等奖数: {{four}}个</span>
+                <span v-if='three'>3等奖数: {{three}}个</span>
+                <span v-if='two'>2等奖数: {{two}}个</span>
+                <span v-if='one'>1等奖数: {{one}}个</span>
+              </el-tag>
+            </div>
             <div v-for='(item, index) in selectedNum' :key='index'>
-              <span>第{{item.no}}期：</span>
-              <span style='display: inline-block; width: 80px'>
+              <div v-if='item.level>0'>
+                <span>第{{item.no}}期：</span>
+                <span style='display: inline-block; width: 80px'>
                 <span v-if='item.level > 0' style='color: red'>中{{item.level}}等奖</span>
                 <span v-else>未中奖</span>
               </span>
-              <span style='margin-right: 20px'>前区：
+                <span style='margin-right: 20px'>前区：
                 <span v-if='item.array[0].length>0'>
                   <span style='color: red'>{{item.array[0]}}</span>
                 </span>
                 <span v-else>无</span>
               </span>
-              <span>后区：
+                <span>后区：
                  <span v-if='item.array[1].length>0'>
                   <span style='color: red'>{{item.array[1]}}</span>
                 </span>
                 <span v-else>无</span>
               </span>
+              </div>
             </div>
           </div>
         </div>
@@ -142,7 +189,7 @@
     <el-dialog
             title="提示"
             :visible.sync="dialogVisible"
-            width="300px"
+            width="600px"
             :before-close="handleClose">
       <span>
        <div class="demo-input-suffix">
@@ -179,7 +226,7 @@
 <script>
   import {parseTime} from "./utils";
   import jsCookies from 'js-cookie'
-  import {AllNum, randomMa} from "./utils/config";
+  import {AllNum, randomMa, aaa} from "./utils/config";
 
   export default {
     name: 'App',
@@ -206,21 +253,24 @@
         AllNum: AllNum,
         selectedNum: [],
         currentRow: null,
-        aaa: []
+        front: [],
+        end: [],
+        num: 0, // 总中奖数
+        nine: 0, // 9等奖中奖数
+        eight: 0, // 8等奖中奖数
+        seven: 0, // 7等奖中奖数
+        six: 0, // 6等奖中奖数
+        five: 0, // 5等奖中奖数
+        four: 0, // 4等奖中奖数
+        three: 0, // 3等奖中奖数
+        two: 0, // 2等奖中奖数
+        one: 0, // 1等奖中奖数
+        aaa: aaa
       }
     },
     created() {
       // 总期数先转成json，再处理
-      // this.aaa = this.aaa.map(value => {
-      //   value = value.slice(0, 8)
-      //   value = {
-      //     no: value[0],
-      //     array: [value.slice(1, 6), value.slice(6, 8)]
-      //   }
-      //   return value
-      // })
-      // console.log(JSON.stringify(this.aaa), 'this.aaa')
-
+      // this.getAAA()
       this.randomMa = jsCookies.get('randomMa')
       this.flag = !!this.randomMa
       if (process.env.NODE_ENV !== 'development') {
@@ -257,6 +307,17 @@
       // this.getStatic()
     },
     methods: {
+      getAAA() {
+        this.aaa = this.aaa.map(value => {
+          value = value.slice(0, 8)
+          value = {
+            no: value[0],
+            array: [value.slice(1, 6), value.slice(6, 8)]
+          }
+          return value
+        }).reverse()
+        console.log(JSON.stringify(this.aaa), 'this.aaa')
+      },
       getStatic() {
         this.AllNum.map((val, i) => {
           return this.contrast(i, val.no, val.array, this.selectNum)
@@ -266,6 +327,8 @@
       contrast(i, no, array1, array2) {
         this.selectedNum.push({
           no: no,
+          level: 0,
+          prizeTotal: 0,
           array: [[], []]
         })
         array1[0].map((value) => {
@@ -296,28 +359,46 @@
             value.array[0].length === 2 && value.array[1].length === 1 ||
             value.array[0].length === 0 && value.array[1].length === 2) {
             value.level = 9
+            this.num += 1
+            this.nine += 1
           } else if (value.array[0].length === 2 && value.array[1].length === 2 ||
             value.array[0].length === 3 && value.array[1].length === 1) {
             value.level = 8
+            this.num += 1
+            this.eight += 1
           } else if (value.array[0].length === 4 && value.array[1].length === 0) {
             value.level = 7
+            this.num += 1
+            this.seven += 1
           } else if (value.array[0].length === 3 && value.array[1].length === 2) {
             value.level = 6
+            this.num += 1
+            this.six += 1
           } else if (value.array[0].length === 4 && value.array[1].length === 1) {
             value.level = 5
+            this.num += 1
+            this.five += 1
           } else if (value.array[0].length === 4 && value.array[1].length === 2) {
             value.level = 4
+            this.num += 1
+            this.four += 1
           } else if (value.array[0].length === 5 && value.array[1].length === 0) {
             value.level = 3
+            this.num += 1
+            this.three += 1
           } else if (value.array[0].length === 5 && value.array[1].length === 1) {
             value.level = 2
+            this.num += 1
+            this.two += 1
           } else if (value.array[0].length === 5 && value.array[1].length === 2) {
             value.level = 1
+            this.num += 1
+            this.one += 1
           } else {
             value.level = 0
           }
           return value
-        })
+        }).reverse()
       },
       newNumFunc() {
         this.loading = true
@@ -455,9 +536,28 @@
       },
       handleCurrentChange(val) {
         this.currentRow = val;
+        this.reset()
         this.selectNum = [val.front, val.end]
-        this.selectedNum = []
         this.getStatic()
+      },
+      handleBi() {
+        this.reset()
+        this.selectNum = [this.front, this.end]
+        this.getStatic()
+      },
+      reset() {
+        this.selectedNum = []
+        this.num = 0 // 总中奖数
+        this.nine = 0 // 9等奖中奖数
+        this.eight = 0 // 8等奖中奖数
+        this.seven = 0 // 7等奖中奖数
+        this.six = 0 // 6等奖中奖数
+        this.five = 0 // 5等奖中奖数
+        this.four = 0 // 4等奖中奖数
+        this.three = 0 // 3等奖中奖数
+        this.two = 0 // 2等奖中奖数
+        this.one = 0 // 1等奖中奖数
+
       }
     }
 
@@ -504,7 +604,7 @@
   }
 
   .taLeft {
-    margin-left: 135px;
+    margin-left: 125px;
     margin-top: 10px;
   }
 
@@ -638,5 +738,14 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+  }
+  .el-select {
+    margin-bottom: 10px;
+  }
+  .el-input {
+    width: 400px !important;
+  }
+  .prize-box span {
+    margin-right: 10px;
   }
 </style>
