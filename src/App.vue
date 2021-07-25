@@ -27,6 +27,7 @@
             <el-button v-if='loading' type='danger' @click='newNumFunc' disabled>生成中</el-button>
             <el-button v-else type='danger' @click='newNumFunc'>自动生成</el-button>
             <el-button type='danger' @click='stopAutoFunc'>停止自定生成</el-button>
+            <el-button type='danger' @click='handleReset'>清空选择</el-button>
             <input class='date-box' type='date' v-model='date'>
             <el-button type='danger' @click='copyNum'>复制号码</el-button>
           </div>
@@ -52,6 +53,7 @@
         <div class='flex-sb'>
           <div class='taLeft'>
             <el-table
+                    v-if='allNum.length>0'
                     :data="allNum"
                     style="width: 80%"
                     highlight-current-row
@@ -246,7 +248,7 @@
 <script>
   import {parseTime} from "./utils";
   import jsCookies from 'js-cookie'
-  import {AllNum, randomMa, aaa, AllErNum} from "./utils/config";
+  import {AllNum, randomMa, aaa, timerNum} from "./utils/config";
   // import TableItem from "./components/table";
 
   export default {
@@ -290,7 +292,7 @@
         one: 0, // 1等奖中奖数
         history: [{}],
         aaa: aaa,
-        AllErNum: AllErNum
+        // AllErNum: AllErNum
       }
     },
     created() {
@@ -329,14 +331,6 @@
         name: '周女士',
         value: '三等奖'
       }]
-      // this.getStatic()
-
-      // 赋值
-      // for (let i = 1; i <= 47; i++) {
-      //    i = i < 10 ? '0'+i : i.toString()
-      //   this.history[0][i] = 0
-      // }
-
       // this.calcSing()
     },
     methods: {
@@ -355,7 +349,6 @@
         this.AllNum.map((val, i) => {
           return this.contrast(i, val.no, val.array, this.selectNum)
         })
-        console.log(JSON.stringify(this.selectedNum), 'this.selectedNum')
         this.calcPrize()
       },
       contrast(i, no, array1, array2) {
@@ -363,8 +356,7 @@
           no: no,
           level: 0,
           prizeTotal: 0,
-          array: [[], []],
-          array2: [[], []],
+          array: [[], []]
         })
         array1[0].map((value) => {
           array2[0].map((val) => {
@@ -434,7 +426,7 @@
         this.loading = true
         this.timer = setInterval(() => {
           this.autoFunc()
-        }, 2000)
+        }, 100)
       },
       stopAutoFunc() {
         clearInterval(this.timer)
@@ -469,7 +461,7 @@
           this.endArea = endAreaCopy
           this.getFrontArea = []
           this.getEndArea = []
-          if (this.allNum.length >= 5) {
+          if (this.allNum.length >= timerNum) {
             clearInterval(this.timer)
             this.loading = false
           }
@@ -611,9 +603,11 @@
         if(value === i) {
           this.history[0][i] += 1
         }
+      },
+      handleReset() {
+        this.allNum = []
       }
     }
-
   }
 </script>
 
