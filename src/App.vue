@@ -26,7 +26,7 @@
             <el-button type='danger' @click='newNum'>手动生成</el-button>
             <el-button v-if='loading' type='danger' @click='newNumFunc' disabled>生成中</el-button>
             <el-button v-else type='danger' @click='newNumFunc'>自动生成</el-button>
-            <el-button type='danger' @click='stopAutoFunc'>停止自定生成</el-button>
+            <el-button type='danger' @click='stopAutoFunc'>停止自动生成</el-button>
             <el-button type='danger' @click='handleReset'>清空选择</el-button>
             <input class='date-box' type='date' v-model='date'>
             <el-button type='danger' @click='copyNum'>复制号码</el-button>
@@ -51,13 +51,13 @@
           </div>
         </div>
         <div class='flex-sb'>
-          <div class='taLeft'>
+          <div class='taLeft' style='margin-right: 20px'>
             <el-table
                     v-if='allNum.length>0'
                     :data="allNum"
-                    style="width: 96%"
+                    style="width: 700px"
                     highlight-current-row
-                    @current-change="handleCurrentChange"
+                    @cell-click="handleCurrentChange"
             >
               <el-table-column
                       type="index"
@@ -66,7 +66,7 @@
               <el-table-column
                       prop="front"
                       label="前区"
-                      width="260">
+                      width="240">
                 <template slot-scope="scope">
                   <span style="margin-left: 10px">{{scope.row.front }}</span>
                 </template>
@@ -74,7 +74,7 @@
               <el-table-column
                       prop="end"
                       label="后区"
-                      width="180">
+                      width="160">
                 <template slot-scope="scope">
                   <span style="margin-left: 10px">{{scope.row.end }}</span>
                 </template>
@@ -88,10 +88,10 @@
               <el-table-column
                       fixed="right"
                       label="操作"
-                      width="120">
+                      width="80">
                 <template slot-scope="scope">
                   <el-button
-                          @click.native.prevent="handleDet(scope.$index, items)"
+                          @click.native.stop="handleDet(scope.$index, scope.row)"
                           type="text"
                           size="small">
                     删除
@@ -100,7 +100,7 @@
               </el-table-column>
             </el-table>
             <textarea cols="100" rows="1" ref="allNumRef" v-model='allNumString'
-                      style='opacity: 0;width: 96%'>这里面的文本内容被复制 </textarea>
+                      style='opacity: 0;width: 700px'>这里面的文本内容被复制 </textarea>
           </div>
           <div>
             <div>
@@ -138,44 +138,46 @@
               </el-select>
             </div>
             <el-button size='small' @click='handleBi'>对比</el-button>
-            <h3>历史该号中奖情况(07001~21084)共{{AllNum.length}}期</h3>
-            <div class='prize-box' v-if='num'>
-              <el-tag type="success">
+            <div style='width: 600px;overflow: auto'>
+              <h3>历史该号中奖情况(07001~21084)共{{AllNum.length}}期</h3>
+              <div class='prize-box' v-if='num'>
+                <el-tag type="success">
                 <span v-if='num'>
                   <b style='margin-right: 5px'>所有中奖数: {{num}}个;</b>
                   <strong>中奖概率 {{(num/selectedNum.length * 100).toFixed(2) }} %</strong>
                 </span>
-                <span v-if='nine'>9等奖数: {{nine}}个</span>
-                <span v-if='eight'>8等奖数: {{eight}}个</span>
-                <span v-if='seven'>7等奖数: {{seven}}个</span>
-                <span v-if='six'>6等奖数: {{six}}个</span>
-                <span v-if='five'>5等奖数: {{five}}个</span>
-                <span v-if='four'>4等奖数: {{four}}个</span>
-                <span v-if='three'>3等奖数: {{three}}个</span>
-                <span v-if='two'>2等奖数: {{two}}个</span>
-                <span v-if='one'>1等奖数: {{one}}个</span>
-              </el-tag>
-            </div>
-            <div class='prize-content' v-if='selectedNum.length>0'>
-              <div v-for='(item, index) in selectedNum' :key='index'>
-                <div v-if='item.level>0'>
-                  <span>第{{item.no}}期：</span>
-                  <span style='display: inline-block; width: 80px'>
+                  <span v-if='nine'>9等奖数: {{nine}}个</span>
+                  <span v-if='eight'>8等奖数: {{eight}}个</span>
+                  <span v-if='seven'>7等奖数: {{seven}}个</span>
+                  <span v-if='six'>6等奖数: {{six}}个</span>
+                  <span v-if='five'>5等奖数: {{five}}个</span>
+                  <span v-if='four'>4等奖数: {{four}}个</span>
+                  <span v-if='three'>3等奖数: {{three}}个</span>
+                  <span v-if='two'>2等奖数: {{two}}个</span>
+                  <span v-if='one'>1等奖数: {{one}}个</span>
+                </el-tag>
+              </div>
+              <div class='prize-content' v-if='selectedNum.length>0'>
+                <div v-for='(item, index) in selectedNum' :key='index'>
+                  <div v-if='item.level>0'>
+                    <span>第{{item.no}}期：</span>
+                    <span style='display: inline-block; width: 80px'>
                 <span v-if='item.level > 0' style='color: red'>中{{item.level}}等奖</span>
                 <span v-else>未中奖</span>
               </span>
-                  <span style='margin-right: 20px'>前区：
+                    <span style='margin-right: 20px'>前区：
                 <span v-if='item.array[0].length>0'>
                   <span style='color: red'>{{item.array[0]}}</span>
                 </span>
                 <span v-else>无</span>
               </span>
-                  <span>后区：
+                    <span>后区：
                  <span v-if='item.array[1].length>0'>
                   <span style='color: red'>{{item.array[1]}}</span>
                 </span>
                 <span v-else>无</span>
               </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -500,12 +502,13 @@
       },
       handleDet(index, items) {
         this.allNum.splice(index, 1)
-        let deleteItem = items.front.join() + '|' + items.end.join()
+        let deleteItem =  items.front.join() + '|' + items.end.join()
         this.content = this.content.map(value => {
           value = value.replace('\n', '')
           return value
         })
         this.content = this.content.filter(val => val !== deleteItem)
+        this.reset()
       },
       handleClose() {
         this.dialogVisible = false
@@ -793,7 +796,7 @@
     width: 400px !important;
   }
   .prize-content {
-    height: 400px;
+    height: 500px;
     overflow: auto;
   }
   .prize-box span {
