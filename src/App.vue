@@ -585,28 +585,28 @@
       },
 
       // 历史个数字出现的概率
-      calcSing() {
-        for (let i = 0; i < this.AllErNum.length; i++) {
-          this.singFun(i, this.AllErNum[i])
-        }
-        // return this.singFun(i, val)
-      },
-      singFun(i, val) {
-        val.map((value) => {
-          if(i < 10) {
-            for (let ii = 1; ii <= 35; ii++) {
-              ii = ii < 10 ? '0'+ii : ii.toString()
-              this.copyFun(ii, value)
-            }
-          }
-        })
-      },
-      copyFun(i, value) {
-        // console.log(value, i)
-        if(value === i) {
-          this.history[0][i] += 1
-        }
-      },
+      // calcSing() {
+      //   for (let i = 0; i < this.AllErNum.length; i++) {
+      //     this.singFun(i, this.AllErNum[i])
+      //   }
+      //   // return this.singFun(i, val)
+      // },
+      // singFun(i, val) {
+      //   val.map((value) => {
+      //     if(i < 10) {
+      //       for (let ii = 1; ii <= 35; ii++) {
+      //         ii = ii < 10 ? '0'+ii : ii.toString()
+      //         this.copyFun(ii, value)
+      //       }
+      //     }
+      //   })
+      // },
+      // copyFun(i, value) {
+      //   // console.log(value, i)
+      //   if(value === i) {
+      //     this.history[0][i] += 1
+      //   }
+      // },
       handleReset() {
         this.allNum = []
       }
