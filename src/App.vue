@@ -139,7 +139,7 @@
             </div>
             <el-button size='small' @click='handleBi'>对比</el-button>
             <div style='width: 600px;overflow: auto'>
-              <h3>历史该号中奖情况(07001~21084)共{{AllNum.length}}期</h3>
+              <h3>历史该号中奖情况(07001~{{AllNum[0].no}})共{{AllNum.length}}期</h3>
               <div class='prize-box' v-if='num'>
                 <el-tag type="success">
                 <span v-if='num'>
