@@ -20,8 +20,6 @@
         default: ''
       }
     },
-    created() {
-    }
   }
 </script>
 
