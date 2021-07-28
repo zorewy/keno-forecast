@@ -609,6 +609,8 @@
       // },
       handleReset() {
         this.allNum = []
+        this.content = []
+        this.allNumString = []
       }
     }
   }
