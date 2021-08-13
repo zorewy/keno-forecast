@@ -522,7 +522,7 @@
       },
       handleMa() {
         if (this.randomMa === randomMa) {
-          jsCookies.set('randomMa', randomMa, {expires: 3})
+          jsCookies.set('randomMa', randomMa, {expires: 365})
           this.dialogVisible = false
           this.flag = true
           this.$message({
