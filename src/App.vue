@@ -249,7 +249,7 @@
 
 <script>
   import {parseTime} from "./utils";
-  import jsCookies from 'js-cookie'
+  // import jsCookies from 'js-cookie'
   import {AllNum, randomMa, aaa, timerNum} from "./utils/config";
   // import TableItem from "./components/table";
 
@@ -300,7 +300,7 @@
     created() {
       // 总期数先转成json，再处理
       // this.getAAA()
-      this.randomMa = jsCookies.get('randomMa')
+      this.randomMa = localStorage.getItem('randomMa', randomMa)
       this.flag = !!this.randomMa
       if (process.env.NODE_ENV !== 'development') {
         window.oncontextmenu = function () {
@@ -522,7 +522,7 @@
       },
       handleMa() {
         if (this.randomMa === randomMa) {
-          jsCookies.set('randomMa', randomMa, {expires: 365})
+          localStorage.setItem('randomMa', randomMa)
           this.dialogVisible = false
           this.flag = true
           this.$message({
